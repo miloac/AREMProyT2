@@ -1,5 +1,6 @@
-package co.edu.escuelaing.arem.webserverheroku;
+package co.edu.escuelaing.arem.webserveraws;
 
+import co.edu.escuelaing.arem.webserveraws.impl.HTMLBuilderImpl;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
@@ -19,27 +20,26 @@ import org.apache.commons.io.FileUtils;
  */
 public class ServerThread implements Runnable {
     
+    ServerSocket serverSocket;
+    HTMLBuilder htmlBuilder;
+    
+    public ServerThread(ServerSocket s, HTMLBuilder htmlBuilder) {
+        serverSocket = s;
+        this.htmlBuilder = htmlBuilder;
+    }
+    
     @Override
     public void run(){
         try {
-            ServerThread server = new ServerThread();
-            server.startConnection();
+            while (true) {
+                startConnection();
+            }
         } catch (IOException ex) {
             Logger.getLogger(ServerThread.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
     public void startConnection() throws IOException {
-        ServerSocket serverSocket = null;
-        Integer port = null;
-        try {
-            port = (System.getenv("PORT") == null) ? 8080 : new Integer(System.getenv("PORT"));
-            System.out.println("PORT: " + port);
-            serverSocket = new ServerSocket(port);
-        } catch (IOException e) {
-            System.err.println("Could not listen on port:" + port);
-            System.exit(1);
-            }
         Socket clientSocket = null;
         try {
             System.out.println("Listo para recibir ...");
@@ -72,20 +72,14 @@ public class ServerThread implements Runnable {
         out.close();
         in.close();
         clientSocket.close();
-        serverSocket.close();
     }
     
-    public String getContent(String getRequest) throws IOException {
-        
-        URL resource = null;
-        if (getRequest.split(" ")[1].equals("/")) {
-            resource = ServidorWeb.class.getResource("/index.html");
-        }
-        else {
-            resource = ServidorWeb.class.getResource(getRequest.split(" ")[1]);
-        }
-        File file = new File(resource.getFile());
+    public String getContent(String stringRequest) throws IOException {
+        URL requestURL = new URL("http://localhost:8080" + stringRequest.split(" ")[1]);
+        System.out.println("Query: " + requestURL.getQuery());
+        String htmlCode = htmlBuilder.getHTML(requestURL);
         return "HTTP/1.1 200 OK\r\n"
-                + "Content-Type: text/html\r\n\r\n" + FileUtils.readFileToString(file, StandardCharsets.UTF_8);
+                + "Content-Type: text/html\r\n\r\n" + htmlCode;
+
     }
 }
