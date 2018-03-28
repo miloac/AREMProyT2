@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package co.edu.escuelaing.arem.webserveraws.impl;
 
 import co.edu.escuelaing.arem.webserveraws.HTMLBuilder;
@@ -20,8 +15,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
- *
- * @author daniel
+ * Esta clase se encarga de leer los archivos HTML según un path dado.
+ * Adicionalmente se le inyecta un APIApplication con el cual puede obtener datos de un API 
+ * @author 
  */
 @Service
 public class HTMLBuilderImpl implements HTMLBuilder {
@@ -40,7 +36,7 @@ public class HTMLBuilderImpl implements HTMLBuilder {
     
     @Override
     public String getHTML(URL requestURL) {
-        String response = "Esta pagina no existe, lo siento";
+        String response = "Esta pagina no existe, lo sentimos";
         URL resource;
         if (requestURL.getPath().equals("/")) {
             resource = HTMLBuilderImpl.class.getResource("/index.html");
@@ -57,9 +53,7 @@ public class HTMLBuilderImpl implements HTMLBuilder {
         }
         
         if (requestURL.getQuery() != null) {
-            System.out.println("api is null ? " + (api == null));
             String res = api.getResult(requestURL.getQuery());
-            System.out.println(res);
             JsonNode node1 = null;
             JsonNode node2 = null;
             try {
@@ -68,7 +62,6 @@ public class HTMLBuilderImpl implements HTMLBuilder {
             } catch (IOException ex) {
                 Logger.getLogger(HTMLBuilderImpl.class.getName()).log(Level.SEVERE, null, ex);
             }
-            System.out.println("Node2 as text:" + node2.asText());
             response = response.replace("{valor}", node1.asText());
             response = response.replace("{cuadrado}", node2.asText());
         }

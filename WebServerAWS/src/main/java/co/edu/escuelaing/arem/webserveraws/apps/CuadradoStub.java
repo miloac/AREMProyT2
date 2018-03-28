@@ -1,17 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package co.edu.escuelaing.arem.webserveraws.apps;
 
 import org.springframework.stereotype.Service;
 
 /**
- *
- * @author daniel
+ * Código Stub con propósitos de prueba durante el desarrollo
+ * @author Daniel Ospina
  */
-@Service
 public class CuadradoStub implements APIApplication {
 
     @Override

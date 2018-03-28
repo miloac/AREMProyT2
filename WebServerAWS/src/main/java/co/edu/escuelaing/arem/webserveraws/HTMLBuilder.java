@@ -1,16 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package co.edu.escuelaing.arem.webserveraws;
 
-import java.io.IOException;
 import java.net.URL;
 
 /**
- *
- * @author daniel
+ * Interface para constructores/lectores de HTML, útil si el usuario requiere que la página web tenga funcionalidades específicas.
+ * @author Daniel Ospina
  */
 public interface HTMLBuilder {
     

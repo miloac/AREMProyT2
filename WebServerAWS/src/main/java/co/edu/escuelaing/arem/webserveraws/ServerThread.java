@@ -1,22 +1,18 @@
 package co.edu.escuelaing.arem.webserveraws;
 
-import co.edu.escuelaing.arem.webserveraws.impl.HTMLBuilderImpl;
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.URL;
-import java.nio.charset.StandardCharsets;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import org.apache.commons.io.FileUtils;
 
 /**
- *
- * @author daniel
+ * Thread para servir a cada peticion sobre el servidor
+ * @author Daniel Ospina
  */
 public class ServerThread implements Runnable {
     
