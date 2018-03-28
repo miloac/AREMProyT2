@@ -18,7 +18,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class Cuadrado implements APIApplication{
 
-    private final String API_URL = "https://cuadradoapp.herokuapp.com";
+    private final String API_URL = "https://cuadradoapp.herokuapp.com/cuadrado?";
 
     @Override
     public String getResult(String query) {
