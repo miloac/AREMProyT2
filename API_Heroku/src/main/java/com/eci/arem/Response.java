@@ -8,6 +8,7 @@ package com.eci.arem;
 /**
  *
  * @author Juan Camilo Mantilla
+ * Clase utilizada para generar el JSON retornado al API
  */
 public class Response {
     private int valor;

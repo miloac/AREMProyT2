@@ -14,10 +14,18 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 @RestController
 @RequestMapping("/cuadrado")
+/**
+ * Controlador para el API de calculo de cuadrados
+ */
 public class RestApiController {
 
-    @RequestMapping(value = "")   
-    public ResponseEntity<?> getBarBySimplePathWithRequestParam(
+    @RequestMapping(value = "")
+    /**
+     * Manejador del API que ingresado un numero al parametro "valor", retorna 
+     * en formato JSON el numero ingresado y su cuadrado
+     * @return ResponseEntity con el JSON del numero y su cuadrado
+     */
+    public ResponseEntity<?> ManejadorCuadrado(
         @RequestParam("valor") int valor) {
 
         Response resp = new Response(valor, (int) Math.pow(valor,2));
