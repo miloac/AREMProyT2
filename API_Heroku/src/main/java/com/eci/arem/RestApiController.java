@@ -25,9 +25,8 @@ public class RestApiController {
      * en formato JSON el numero ingresado y su cuadrado
      * @return ResponseEntity con el JSON del numero y su cuadrado
      */
-    public ResponseEntity<?> ManejadorCuadrado(
-        @RequestParam("valor") int valor) {
-
+    public ResponseEntity<?> ManejadorCuadrado(@RequestParam("valor") int valor) {
+        System.out.println("Recibida nueva solicitud en API: " + valor);
         Response resp = new Response(valor, (int) Math.pow(valor,2));
         return new ResponseEntity<>(resp, HttpStatus.ACCEPTED);
 
