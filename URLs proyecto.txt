@@ -1,0 +1,5 @@
+Repositorio GitHub: https://github.com/miloac/AREMProyT2
+Video: https://drive.google.com/file/d/1Fbm_kk4uWpy_swGZa9AR6sZtRTYikF7x/view
+Servidor web AWS: http://34.217.215.211:8081/
+API Heroku: http://cuadradoapp.herokuapp.com/
+API Heroku con ejemplo: https://cuadradoapp.herokuapp.com/cuadrado?valor=5
